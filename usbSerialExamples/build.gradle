@@ -8,13 +8,13 @@ android {
         minSdkVersion 14
         targetSdkVersion 19
 
-        testPackageName "com.hoho.android.usbserial.examples"
+        applicationId "com.hoho.android.usbserial.examples"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
 
     buildTypes {
         release {
-            runProguard true
+            minifyEnabled true
         }
     }
 }
