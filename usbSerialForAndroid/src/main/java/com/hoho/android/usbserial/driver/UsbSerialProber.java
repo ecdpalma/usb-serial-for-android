@@ -44,10 +44,11 @@ public class UsbSerialProber {
     public static UsbSerialProber getDefaultProber() {
         return new UsbSerialProber(getDefaultProbeTable());
     }
-    
+
     public static ProbeTable getDefaultProbeTable() {
         final ProbeTable probeTable = new ProbeTable();
         probeTable.addDriver(CdcAcmSerialDriver.class);
+        probeTable.addDriver(GenericWriteDriver.class);
         probeTable.addDriver(Cp21xxSerialDriver.class);
         probeTable.addDriver(FtdiSerialDriver.class);
         probeTable.addDriver(ProlificSerialDriver.class);
@@ -75,10 +76,10 @@ public class UsbSerialProber {
         }
         return result;
     }
-    
+
     /**
      * Probes a single device for a compatible driver.
-     * 
+     *
      * @param usbDevice the usb device to probe
      * @return a new {@link UsbSerialDriver} compatible with this device, or
      *         {@code null} if none available.

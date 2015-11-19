@@ -93,16 +93,19 @@ public class ProbeTable {
     }
 
     /**
-     * Returns the driver for the given (vendor, product) pair, or {@code null}
-     * if no match.
+     * Returns the driver for the given (vendor, product) pair, or GenericWriteDriver if no match
      *
      * @param vendorId the USB vendor id
      * @param productId the USB product id
-     * @return the driver class matching this pair, or {@code null}
+     * @return the driver class matching this pair, or {@code GenericWriteDriver}
      */
     public Class<? extends UsbSerialDriver> findDriver(int vendorId, int productId) {
         final Pair<Integer, Integer> pair = Pair.create(vendorId, productId);
-        return mProbeTable.get(pair);
+        Class<? extends UsbSerialDriver> driver = mProbeTable.get(pair);
+        if (driver == null) {
+            driver = GenericWriteDriver.class;
+        }
+        return driver;
     }
 
 }
